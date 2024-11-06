@@ -1,12 +1,21 @@
-import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import Dashboard from '../components/Dashboard';
+import PokemonList from '../components/PokemonList';
+import MOCK_DATA from '../Data';
+
+const Wrap = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin: 20px;
+`;
 
 export default function Dex() {
-    const navigate = useNavigate();
-
     return (
-        <div>
-            <p>Dex</p>
-            <button onClick={() => navigate('/detail/1')}>상세 페이지로 이동하기</button>
-        </div>
+        <Wrap>
+            <Dashboard />
+            <PokemonList data={MOCK_DATA} />
+        </Wrap>
     );
 }
