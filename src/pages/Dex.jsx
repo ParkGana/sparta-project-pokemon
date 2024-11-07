@@ -3,6 +3,7 @@ import Dashboard from '../components/Dashboard';
 import PokemonList from '../components/PokemonList';
 import MOCK_DATA from '../Data';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 const Wrap = styled.div`
     display: flex;
@@ -19,11 +20,11 @@ export default function Dex() {
     const handleAdd = (data) => {
         // 이미 선택된 포켓몬인 경우
         if (myPokemons.find((pokemon) => pokemon.id === data.id)) {
-            window.alert('이미 선택된 포켓몬입니다!');
+            toast('이미 선택된 포켓몬입니다.');
         }
         // 이미 6개의 포켓몬이 선택된 경우
         else if (myPokemons.length === 6) {
-            window.alert('포켓몬은 최대 6개까지 선택할 수 있어요!');
+            toast('더 이상 선택할 수 없습니다.');
         } else {
             setMyPokemons([...myPokemons, data]);
         }
