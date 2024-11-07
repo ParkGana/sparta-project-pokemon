@@ -50,7 +50,7 @@ export default function Detail() {
                         })}
                     </Description>
                     <Description>{pokemon.description}</Description>
-                    <Button label="뒤로 가기" background="black" handleClick={() => navigate('/dex')} />
+                    <Button backgroundColor="black" label="뒤로 가기" handleClick={() => navigate('/dex')} />
                 </Wrap>
             )}
         </>

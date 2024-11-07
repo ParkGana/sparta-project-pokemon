@@ -34,23 +34,20 @@ const Description = styled.p`
     color: #666666;
 `;
 
-export default function PokemonCard({ type = 'list', data, handleAdd, handleDelete }) {
+export default function PokemonCard({ type = 'list', pokemon, handleAdd, handleDelete }) {
     const navigate = useNavigate();
 
+    const handleClick = (e) => {
+        e.stopPropagation();
+        type === 'list' ? handleAdd(pokemon) : handleDelete(pokemon);
+    };
+
     return (
-        <Container onClick={() => navigate(`/detail/${data.id}`)}>
-            <Character src={data.img_url} />
-            <Name>{data.korean_name}</Name>
-            <Description>No. {String(data.id).padStart(3, '0')}</Description>
-            <Button
-                type="sub"
-                background="red"
-                label={type === 'list' ? '추가' : '삭제'}
-                handleClick={(e) => {
-                    e.stopPropagation();
-                    type === 'list' ? handleAdd(data) : handleDelete(data);
-                }}
-            />
+        <Container onClick={() => navigate(`/detail/${pokemon.id}`)}>
+            <Character src={pokemon.img_url} />
+            <Name>{pokemon.korean_name}</Name>
+            <Description>No. {String(pokemon.id).padStart(3, '0')}</Description>
+            <Button type="sub" backgroundColor="red" label={type === 'list' ? '추가' : '삭제'} handleClick={handleClick} />
         </Container>
     );
 }

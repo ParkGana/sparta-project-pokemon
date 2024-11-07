@@ -31,8 +31,8 @@ export default function Dex() {
 
     return (
         <Wrap>
-            <Dashboard data={myPokemons} handleDelete={handleDelete} />
-            <PokemonList data={MOCK_DATA} handleAdd={handleAdd} />
+            <Dashboard myPokemons={myPokemons} handleDelete={handleDelete} />
+            <PokemonList pokemons={MOCK_DATA} handleAdd={handleAdd} />
         </Wrap>
     );
 }

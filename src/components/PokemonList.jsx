@@ -12,11 +12,11 @@ const Container = styled.div`
     padding: 20px;
 `;
 
-export default function PokemonList({ data, handleAdd }) {
+export default function PokemonList({ pokemons, handleAdd }) {
     return (
         <Container>
-            {data.map((pokemon) => {
-                return <PokemonCard key={pokemon.id} data={pokemon} handleAdd={handleAdd} />;
+            {pokemons.map((pokemon) => {
+                return <PokemonCard key={pokemon.id} pokemon={pokemon} handleAdd={handleAdd} />;
             })}
         </Container>
     );
