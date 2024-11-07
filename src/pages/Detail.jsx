@@ -1,6 +1,8 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../components/Button';
+import MOCK_DATA from '../Data';
+import { useEffect, useState } from 'react';
 
 const Wrap = styled.div`
     height: 100vh;
@@ -27,14 +29,30 @@ const Description = styled.p`
 
 export default function Detail() {
     const navigate = useNavigate();
+    const param = useParams();
+
+    const [pokemon, setPokemon] = useState();
+
+    useEffect(() => {
+        setPokemon(MOCK_DATA.find((item) => item.id === Number(param.id)));
+    }, [param.id]);
 
     return (
-        <Wrap>
-            <Character src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/143.png" alt="character" />
-            <Name>잠만보</Name>
-            <Description>타입 : 노말</Description>
-            <Description>노말 타입의 포켓몬으로, 큰 몸집과 느긋한 성격을 가집니다.</Description>
-            <Button label="뒤로 가기" background="black" handleClick={() => navigate('/dex')} />
-        </Wrap>
+        <>
+            {pokemon && (
+                <Wrap>
+                    <Character src={pokemon.img_url} alt="character" />
+                    <Name>{pokemon.korean_name}</Name>
+                    <Description>
+                        타입 :{' '}
+                        {pokemon.types.map((type, index) => {
+                            return index < pokemon.types.length - 1 ? `${type}, ` : type;
+                        })}
+                    </Description>
+                    <Description>{pokemon.description}</Description>
+                    <Button label="뒤로 가기" background="black" handleClick={() => navigate('/dex')} />
+                </Wrap>
+            )}
+        </>
     );
 }
