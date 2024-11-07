@@ -22,7 +22,7 @@ export default function Home() {
     return (
         <Wrap>
             <Logo src="src/assets/logo.png" alt="logo" />
-            <Button backgroundColor="red" label="포켓몬 도감 시작하기" handleClick={() => navigate('/dex')} />
+            <Button bgcolor="red" label="포켓몬 도감 시작하기" handleClick={() => navigate('/dex')} />
         </Wrap>
     );
 }

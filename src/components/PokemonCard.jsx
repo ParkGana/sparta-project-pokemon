@@ -50,7 +50,7 @@ export default function PokemonCard({ type = 'list', pokemon, handleAdd, handleD
             <Character src={pokemon.img_url} />
             <Name>{pokemon.korean_name}</Name>
             <Description>No. {String(pokemon.id).padStart(3, '0')}</Description>
-            <Button type="sub" backgroundColor="red" label={type === 'list' ? '추가' : '삭제'} handleClick={handleClick} />
+            <Button type="sub" bgcolor="red" label={type === 'list' ? '추가' : '삭제'} handleClick={handleClick} />
         </Container>
     );
 }

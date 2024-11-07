@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-    ${({ type, backgroundColor }) => `
-        background-color: ${backgroundColor};
+    ${({ type, $bgcolor }) => `
+        background-color: ${$bgcolor};
         border-radius: 4px;
         color: #ffffff;
         font-size: ${type === 'main' ? '16px' : '14px'};
@@ -12,9 +12,9 @@ const Container = styled.div`
     `}
 `;
 
-export default function Button({ type = 'main', backgroundColor, label, handleClick }) {
+export default function Button({ type = 'main', bgcolor, label, handleClick }) {
     return (
-        <Container type={type} backgroundColor={backgroundColor} onClick={handleClick}>
+        <Container type={type} $bgcolor={bgcolor} onClick={handleClick}>
             {label}
         </Container>
     );
