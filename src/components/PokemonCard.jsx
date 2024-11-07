@@ -37,8 +37,11 @@ const Description = styled.p`
 export default function PokemonCard({ type = 'list', pokemon, handleAdd, handleDelete }) {
     const navigate = useNavigate();
 
+    /* 카드 내 버튼 클릭 이벤트 */
     const handleClick = (e) => {
+        // 이벤트 버블링 방지
         e.stopPropagation();
+
         type === 'list' ? handleAdd(pokemon) : handleDelete(pokemon);
     };
 
