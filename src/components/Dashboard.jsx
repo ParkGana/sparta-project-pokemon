@@ -25,13 +25,13 @@ const BallContainer = styled.div`
     overflow: scroll;
 `;
 
-export default function Dashboard({ data }) {
+export default function Dashboard({ data, handleDelete }) {
     return (
         <Container>
             <Title>나만의 포켓몬</Title>
             <BallContainer>
                 {data.map((pokemon) => {
-                    return <PokemonCard key={pokemon.id} type={'my'} data={pokemon} />;
+                    return <PokemonCard key={pokemon.id} type={'my'} data={pokemon} handleDelete={handleDelete} />;
                 })}
                 {[...Array(6 - data.length)].map((_, index) => {
                     return <PokemonBall key={index} />;

@@ -25,9 +25,13 @@ export default function Dex() {
         }
     };
 
+    const handleDelete = (data) => {
+        setMyPokemons([...myPokemons.filter((pokemon) => pokemon.id !== data.id)]);
+    };
+
     return (
         <Wrap>
-            <Dashboard data={myPokemons} />
+            <Dashboard data={myPokemons} handleDelete={handleDelete} />
             <PokemonList data={MOCK_DATA} handleAdd={handleAdd} />
         </Wrap>
     );

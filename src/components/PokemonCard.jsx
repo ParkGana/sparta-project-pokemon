@@ -34,7 +34,7 @@ const Description = styled.p`
     color: #666666;
 `;
 
-export default function PokemonCard({ type = 'list', data, handleAdd }) {
+export default function PokemonCard({ type = 'list', data, handleAdd, handleDelete }) {
     const navigate = useNavigate();
 
     return (
@@ -48,7 +48,7 @@ export default function PokemonCard({ type = 'list', data, handleAdd }) {
                 label={type === 'list' ? '추가' : '삭제'}
                 handleClick={(e) => {
                     e.stopPropagation();
-                    handleAdd(data);
+                    type === 'list' ? handleAdd(data) : handleDelete(data);
                 }}
             />
         </Container>
