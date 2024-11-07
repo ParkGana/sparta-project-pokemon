@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import PokemonBall from './PokemonBall';
+import PokemonCard from './PokemonCard';
 
 const Container = styled.div`
     width: 100%;
@@ -24,17 +25,17 @@ const BallContainer = styled.div`
     overflow: scroll;
 `;
 
-export default function Dashboard() {
+export default function Dashboard({ data }) {
     return (
         <Container>
             <Title>나만의 포켓몬</Title>
             <BallContainer>
-                <PokemonBall />
-                <PokemonBall />
-                <PokemonBall />
-                <PokemonBall />
-                <PokemonBall />
-                <PokemonBall />
+                {data.map((pokemon) => {
+                    return <PokemonCard key={pokemon.id} type={'my'} data={pokemon} />;
+                })}
+                {[...Array(6 - data.length)].map((_, index) => {
+                    return <PokemonBall key={index} />;
+                })}
             </BallContainer>
         </Container>
     );
