@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import PokemonBall from './PokemonBall';
 import PokemonCard from './PokemonCard';
 import { v4 as uuid } from 'uuid';
+import { useContext } from 'react';
+import { PokemonContext } from '../context/PokemonContext';
 
 const Container = styled.div`
     width: 100%;
@@ -26,13 +28,15 @@ const BallContainer = styled.div`
     overflow: scroll;
 `;
 
-export default function Dashboard({ myPokemons, handleDelete }) {
+export default function Dashboard() {
+    const { myPokemons } = useContext(PokemonContext);
+
     return (
         <Container>
             <Title>나만의 포켓몬</Title>
             <BallContainer>
                 {myPokemons.map((pokemon) => {
-                    return <PokemonCard key={pokemon.id} type={'my'} pokemon={pokemon} handleDelete={handleDelete} />;
+                    return <PokemonCard key={pokemon.id} type={'my'} pokemon={pokemon} />;
                 })}
                 {[...Array(6 - myPokemons.length)].map(() => {
                     return <PokemonBall key={uuid()} />;

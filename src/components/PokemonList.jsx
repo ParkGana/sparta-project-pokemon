@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import PokemonCard from './PokemonCard';
+import MOCK_DATA from '../Data';
 
 const Container = styled.div`
     width: 100%;
@@ -12,11 +13,11 @@ const Container = styled.div`
     padding: 20px;
 `;
 
-export default function PokemonList({ pokemons, handleAdd }) {
+export default function PokemonList() {
     return (
         <Container>
-            {pokemons.map((pokemon) => {
-                return <PokemonCard key={pokemon.id} pokemon={pokemon} handleAdd={handleAdd} />;
+            {MOCK_DATA.map((pokemon) => {
+                return <PokemonCard key={pokemon.id} pokemon={pokemon} />;
             })}
         </Container>
     );

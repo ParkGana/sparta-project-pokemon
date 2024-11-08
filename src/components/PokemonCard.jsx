@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import Button from './Button';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { PokemonContext } from '../context/PokemonContext';
 
 const Container = styled.div`
     display: flex;
@@ -34,8 +36,10 @@ const Description = styled.p`
     color: #666666;
 `;
 
-export default function PokemonCard({ type = 'list', pokemon, handleAdd, handleDelete }) {
+export default function PokemonCard({ type = 'list', pokemon }) {
     const navigate = useNavigate();
+
+    const { handleAdd, handleDelete } = useContext(PokemonContext);
 
     /* 카드 내 버튼 클릭 이벤트 */
     const handleClick = (e) => {

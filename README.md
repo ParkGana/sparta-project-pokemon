@@ -20,6 +20,8 @@
 
 -   props-drilling : props-drilling 방식으로 구현
 
+-   context : Context API 방식으로 구현
+
 <br />
 
 ---
