@@ -2,7 +2,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../components/Button';
 import MOCK_DATA from '../Data';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { PokemonContext } from '../context/PokemonContext';
 
 const Wrap = styled.div`
     height: 100vh;
@@ -27,15 +28,28 @@ const Description = styled.p`
     font-size: 16px;
 `;
 
+const ButtonContainer = styled.div`
+    display: flex;
+    gap: 20px;
+`;
+
 export default function Detail() {
     const navigate = useNavigate();
     const param = useParams();
 
+    const { myPokemons, handleAdd, handleDelete } = useContext(PokemonContext);
+
     const [pokemon, setPokemon] = useState();
+    const [label, setLabel] = useState('');
 
     useEffect(() => {
         setPokemon(MOCK_DATA.find((item) => item.id === Number(param.id)));
     }, [param.id]);
+
+    useEffect(() => {
+        const isAdd = myPokemons.length && !!myPokemons.find((item) => item.id === Number(param.id));
+        setLabel(isAdd ? '삭제' : '추가');
+    }, [myPokemons, param.id]);
 
     return (
         <>
@@ -50,7 +64,10 @@ export default function Detail() {
                         })}
                     </Description>
                     <Description>{pokemon.description}</Description>
-                    <Button bgcolor="black" label="뒤로 가기" handleClick={() => navigate('/dex')} />
+                    <ButtonContainer>
+                        <Button bgcolor="red" label={label} handleClick={() => (label === '추가' ? handleAdd(pokemon) : handleDelete(pokemon))} />
+                        <Button bgcolor="black" label="뒤로 가기" handleClick={() => navigate('/dex')} />
+                    </ButtonContainer>
                 </Wrap>
             )}
         </>
