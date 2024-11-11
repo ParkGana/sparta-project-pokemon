@@ -40,6 +40,8 @@
 
 -   <b>react-toastify</b> : yarn add react-toastify
 
+-   <b>redux-toolkit</b> : yarn add react-redux @reduxjs/toolkit
+
 <br />
 
 ---

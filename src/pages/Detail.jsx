@@ -2,8 +2,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../components/Button';
 import MOCK_DATA from '../Data';
-import { useContext, useEffect, useState } from 'react';
-import { PokemonContext } from '../context/PokemonContext';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { CheckMyPokemons } from '../functions/checkMyPokemons';
+import { addPokemon, deletePokemon } from '../redux-toolkit/slices/pokemonSlice';
 
 const Wrap = styled.div`
     height: 100vh;
@@ -35,9 +37,10 @@ const ButtonContainer = styled.div`
 
 export default function Detail() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const param = useParams();
 
-    const { myPokemons, handleAdd, handleDelete } = useContext(PokemonContext);
+    const { myPokemons } = useSelector((state) => state.pokemon);
 
     const [pokemon, setPokemon] = useState();
     const [label, setLabel] = useState('');
@@ -50,6 +53,11 @@ export default function Detail() {
         const isAdd = myPokemons.length && !!myPokemons.find((item) => item.id === Number(param.id));
         setLabel(isAdd ? '삭제' : '추가');
     }, [myPokemons, param.id]);
+
+    /* 페이지 내 버튼 클릭 이벤트 */
+    const handleClick = () => {
+        label === '추가' ? CheckMyPokemons(myPokemons, pokemon) && dispatch(addPokemon({ pokemon })) : dispatch(deletePokemon({ pokemon }));
+    };
 
     return (
         <>
@@ -65,7 +73,7 @@ export default function Detail() {
                     </Description>
                     <Description>{pokemon.description}</Description>
                     <ButtonContainer>
-                        <Button bgcolor="red" label={label} handleClick={() => (label === '추가' ? handleAdd(pokemon) : handleDelete(pokemon))} />
+                        <Button bgcolor="red" label={label} handleClick={handleClick} />
                         <Button bgcolor="black" label="뒤로 가기" handleClick={() => navigate('/dex')} />
                     </ButtonContainer>
                 </Wrap>

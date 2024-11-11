@@ -2,8 +2,7 @@ import styled from 'styled-components';
 import PokemonBall from './PokemonBall';
 import PokemonCard from './PokemonCard';
 import { v4 as uuid } from 'uuid';
-import { useContext } from 'react';
-import { PokemonContext } from '../context/PokemonContext';
+import { useSelector } from 'react-redux';
 
 const Container = styled.div`
     width: 100%;
@@ -29,7 +28,7 @@ const BallContainer = styled.div`
 `;
 
 export default function Dashboard() {
-    const { myPokemons } = useContext(PokemonContext);
+    const { myPokemons } = useSelector((state) => state.pokemon);
 
     return (
         <Container>

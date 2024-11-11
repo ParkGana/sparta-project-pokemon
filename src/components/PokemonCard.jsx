@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import Button from './Button';
 import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { PokemonContext } from '../context/PokemonContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { addPokemon, deletePokemon } from '../redux-toolkit/slices/pokemonSlice';
+import { CheckMyPokemons } from '../functions/checkMyPokemons';
 
 const Container = styled.div`
     display: flex;
@@ -38,15 +39,16 @@ const Description = styled.p`
 
 export default function PokemonCard({ type = 'list', pokemon }) {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    const { handleAdd, handleDelete } = useContext(PokemonContext);
+    const { myPokemons } = useSelector((state) => state.pokemon);
 
     /* 카드 내 버튼 클릭 이벤트 */
     const handleClick = (e) => {
         // 이벤트 버블링 방지
         e.stopPropagation();
 
-        type === 'list' ? handleAdd(pokemon) : handleDelete(pokemon);
+        type === 'list' ? CheckMyPokemons(myPokemons, pokemon) && dispatch(addPokemon({ pokemon })) : dispatch(deletePokemon({ pokemon }));
     };
 
     return (
