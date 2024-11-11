@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import BallImage from '../assets/pokeball.png';
 
 const Container = styled.div`
     min-width: 120px;
@@ -18,7 +19,7 @@ const Ball = styled.img`
 export default function PokemonBall() {
     return (
         <Container>
-            <Ball src="/src/assets/pokeball.png" />
+            <Ball src={BallImage} />
         </Container>
     );
 }
