@@ -4,6 +4,8 @@
 
 내일배움캠프 React 7기 과정에서 진행한 개인 프로젝트이다.
 
+https://sparta-project-pokemon.vercel.app/
+
 ### 프로젝트 목표
 
 -   React에서 props drilling과 Context API를 적용해서 데이터 흐름 이해하기
@@ -17,6 +19,8 @@
 <br />
 
 ### Git Branch
+
+-   master : RTK 방식으로 구현
 
 -   props-drilling : props-drilling 방식으로 구현
 
@@ -75,6 +79,8 @@
 -   #### 포켓몬 상세 정보 조회
 
     -   특정 포켓몬 선택 시 해당 포켓몬의 상세 정보를 화면에 보여주기
+
+    -   상세 페이지에서 나만의 포켓몬 추가 및 삭제하기
 
 -   #### 나만의 포켓몬 추가
 
